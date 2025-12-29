@@ -37,7 +37,7 @@ class _LessonsScreenState extends State<LessonsScreen> {
 
     final totalCompleted = allLessons.where((l) => l.isCompleted).length;
     final totalLessons = allLessons.length;
-    final progressPercent = (totalCompleted / totalLessons) * 100;
+    final progressPercent = totalLessons > 0 ? (totalCompleted / totalLessons) * 100 : 0.0;
     final userLevel = _calculateLevel(totalCompleted);
     final levelName = _getLevelName(userLevel);
 
@@ -48,7 +48,12 @@ class _LessonsScreenState extends State<LessonsScreen> {
           // Progress section
           SliverToBoxAdapter(
             child: Padding(
-              padding: const EdgeInsets.all(AppConstants.paddingLarge),
+              padding: const EdgeInsets.fromLTRB(
+                AppConstants.paddingLarge,
+                AppConstants.paddingLarge,
+                AppConstants.paddingLarge,
+                AppConstants.paddingMedium,
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -95,10 +100,16 @@ class _LessonsScreenState extends State<LessonsScreen> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 8),
+                  const SizedBox(height: AppConstants.paddingSmall),
                   Text(
                     '${progressPercent.toStringAsFixed(0)}% complete',
                     style: Theme.of(context).textTheme.bodySmall,
+                  ),
+                  const SizedBox(height: AppConstants.paddingSmall),
+                  Divider(
+                    thickness: 1,
+                    color: Colors.grey.withOpacity(0.2),
+                    height: 1,
                   ),
                 ],
               ),
@@ -132,6 +143,7 @@ class _LessonsScreenState extends State<LessonsScreen> {
                 category: LessonCategory.intermediate,
                 lessons: intermediateLessons,
                 isLocked: totalCompleted < 5,
+                requiredLessons: 5,
                 currentLessonId: currentLessonId,
               ),
             ),
@@ -146,7 +158,8 @@ class _LessonsScreenState extends State<LessonsScreen> {
                 context,
                 category: LessonCategory.advanced,
                 lessons: advancedLessons,
-                isLocked: totalCompleted < 8,
+                isLocked: totalCompleted < 10,
+                requiredLessons: 10,
                 currentLessonId: currentLessonId,
               ),
             ),
@@ -162,11 +175,16 @@ class _LessonsScreenState extends State<LessonsScreen> {
   }
 
   int _calculateLevel(int lessonsCompleted) {
-    // Level progression: Newbie (0), Trader (3), Advanced (6), Master (9)
-    if (lessonsCompleted >= 8) return 4;
-    if (lessonsCompleted >= 6) return 3;
-    if (lessonsCompleted >= 3) return 2;
-    if (lessonsCompleted >= 1) return 1;
+    // Level progression based on lessons completed (out of 15 total)
+    // Newbie: 0-2 lessons
+    // Trader: 3-7 lessons (finished beginner)
+    // Advanced: 8-12 lessons (finished intermediate)
+    // Master: 13-14 lessons
+    // Legend: 15 lessons (all completed)
+    if (lessonsCompleted >= 15) return 4;
+    if (lessonsCompleted >= 13) return 3;
+    if (lessonsCompleted >= 8) return 2;
+    if (lessonsCompleted >= 3) return 1;
     return 0;
   }
 
@@ -187,6 +205,7 @@ class _LessonsScreenState extends State<LessonsScreen> {
     required List<Lesson> lessons,
     required bool isLocked,
     required int currentLessonId,
+    int requiredLessons = 0,
   }) {
     final isExpanded = expandedState[category] ?? false;
     final categoryTitle = Lesson.getCategoryTitle(category);
@@ -237,14 +256,14 @@ class _LessonsScreenState extends State<LessonsScreen> {
                             ),
                       ),
                       if (isLocked)
-                        Text(
-                          'Complete 5 beginner lessons to unlock',
-                          style: Theme.of(context).textTheme.bodySmall
-                              ?.copyWith(
-                                color: AppColors.warning,
-                                fontWeight: FontWeight.w500,
-                              ),
-                        ),
+                               Text(
+                                 'Complete $requiredLessons lessons to unlock',
+                                 style: Theme.of(context).textTheme.bodySmall
+                                     ?.copyWith(
+                                       color: AppColors.warning,
+                                       fontWeight: FontWeight.w500,
+                                     ),
+                               ),
                     ],
                   ),
                 ),
@@ -296,6 +315,6 @@ class _LessonsScreenState extends State<LessonsScreen> {
             ),
           ),
       ],
-    );
-  }
-}
+      );
+      }
+      }

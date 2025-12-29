@@ -1,8 +1,8 @@
 # Progress Tracker
 
 ## Current Status
-**Last Updated:** 2025-12-29 (Session 2)
-**Version:** v0.1.1 - UI Polish & Gamification
+**Last Updated:** 2025-12-29 (Session 5)
+**Version:** v0.2.3 - Complete Lesson System + Profile Sync
 
 ### ✅ Completed
 
@@ -14,27 +14,36 @@
 - [x] No-transition page navigation
 
 #### Lessons Feature
-- [x] Lesson entity with category (Beginner/Intermediate/Advanced)
-- [x] Lesson repository with mock data and `getCurrentLessonId()`
+- [x] **15 total lessons** (5 Beginner, 5 Intermediate, 5 Advanced)
+- [x] Lesson entity with category and difficulty levels
+- [x] Lesson repository with complete dataset
+- [x] **Sticky progress header** with live stats (Newbie → Legend)
 - [x] Lessons list with expandable category sections
-- [x] Progress bar showing lesson completion
+- [x] Progress bar with divider separator (20%, 33%, etc. for 15 lessons)
 - [x] Lesson tiles with enhanced design (gradients, shadows)
-- [x] Lesson detail screen with content sections
-- [x] Difficulty color coding (Green=Easy, Orange=Medium, Red=Hard)
-- [x] Lesson locking system (Intermediate/Advanced locked until prerequisites)
-- [x] **Motivating level system** (Newbie → Trader → Advanced → Master → Legend)
+- [x] **Yellow difficulty spike** on lesson 5 (Medium difficulty highlight)
+- [x] Lesson detail screen with multi-page content
+- [x] Difficulty color coding (Green=Easy, Yellow=Medium, Red=Hard)
+- [x] Smart unlocking: Intermediate after 5 lessons, Advanced after 10
+- [x] **Level system** (Newbie 0-2, Trader 3-7, Advanced 8-12, Master 13-14, Legend 15)
 - [x] **Smart current lesson** highlighting with bright "Start" button
-- [x] **Future lessons** shown as "Locked" to prevent skipping
+- [x] **Future lessons** shown as "Locked"
 - [x] **Completed lessons** shown with green checkmark
-- [x] **Inactive lessons** appearance (greyed out, reduced opacity)
 
 #### Wallet Feature
 - [x] Crypto asset entity with balance tracking
 - [x] Wallet entity with total balance calculation
 - [x] MetaMask-style balance card with gradient
+- [x] **Entrance animation** on balance card (scale 0.95 → 1.0)
+- [x] **Subtitle** "Your crypto portfolio" for context
+- [x] **Enhanced trending badge** with icon and border
+- [x] **BackdropFilter** for glassmorphism effect on card
 - [x] Send/Receive action buttons
 - [x] Asset list with price, balance, and 24h change
 - [x] Mock data with 5 cryptocurrencies (USDT, BTC, ETH, XRP, SOL)
+- [x] **Unified padding system** across all screens (paddingXSmall → paddingLarge)
+- [x] **Native ad card** integration ("Ready to Trade?" offer)
+- [x] **"Start Learning" button** with school icon and gradient
 
 #### Profile Feature
 - [x] User entity with level, EXP, and progress tracking
@@ -43,16 +52,23 @@
 - [x] Achievement grid with visual status indicators
 - [x] Settings sections (Preferences, Security, General)
 - [x] Notification toggle and other settings
-- [x] 6 mock achievements with various statuses
+- [x] **6 achievements with auto-unlock logic** based on lesson completion
+- [x] **Real-time synchronization** with lesson progress
+- [x] **EXP calculation** (250 EXP per completed lesson)
+- [x] **Level syncing** (same as Lessons screen)
 
 #### Practice Feature
 - [x] Practice screen with locked/unlocked states
 - [x] Unlocked content with feature list and "Start Trading" button
 - [x] Locked content with progress bar and unlock requirements
 - [x] Gamification messaging ("Why practice first?")
-- [x] **Enhanced locked state** with clear requirements messaging
-- [x] **"Go to Lessons" button** for easy navigation to unlock practice
+- [x] **Enhanced locked state** with clear requirements messaging (orange styling)
+- [x] **"Go to Lessons" button** with school icon for easy navigation
 - [x] **Improved visual hierarchy** with gradients and shadows
+- [x] **Lock status container** with "🔒 Trading Practice Locked" title
+- [x] **"Almost there! 📚" message** for motivation
+- [x] **Native ad card** integration in locked state
+- [x] Responsive design with SingleChildScrollView
 
 #### Navigation
 - [x] 4-tab bottom navigation (Lessons, Wallet, Practice, Profile)
@@ -168,6 +184,75 @@ lib/
 ---
 
 ## Session History
+
+### Session 2025-12-29 Part 5 - Complete Lesson System + Profile Sync (v0.2.3)
+1. **Expanded Lesson System**
+   - Increased from 9 to 15 lessons (5 per category)
+   - Added new intermediate lessons (6-10): Candlestick Patterns, Support & Resistance, Volume Analysis
+   - Added new advanced lessons (11-15): Risk Management Pro, Market Psychology, Trading Automation
+   - Updated unlock requirements: Intermediate after 5, Advanced after 10
+   
+2. **Difficulty Spike Feature**
+   - Lesson 5 (Market Analysis) now Medium difficulty (yellow color)
+   - Creates motivational "difficulty spike" at end of Beginner section
+   - Prepares users for Intermediate content
+   
+3. **Progress Header Enhancement**
+   - Reduced bottom padding (24px → 16px)
+   - Added divider line separator for visual distinction
+   - Better spacing around progress bar
+   
+4. **Level System Recalculation**
+   - **Newbie:** 0-2 lessons
+   - **Trader:** 3-7 lessons (finished Beginner)
+   - **Advanced:** 8-12 lessons (finished Intermediate)
+   - **Master:** 13-14 lessons
+   - **Legend:** 15 lessons (all completed)
+
+5. **Profile Screen Synchronization**
+   - Pulls real lesson data from LessonRepository
+   - User stats: lessonsCompleted, totalExp (250 per lesson), level
+   - Achievements auto-unlock based on progress:
+     - 🚀 First Step → 1+
+     - 📚 Quick Learner → 5+
+     - 🏆 Trading Master → 10+
+     - ⭐ Legendary Trader → 15 (all)
+     - 📈 Intermediate Path → 5+
+     - 🎯 Advanced Mastery → 10+
+
+6. **Wallet Padding Standardization**
+   - Unified all paddings to AppConstants values
+   - Removed hardcoded pixel values (4px, 6px, 8px, 10px, 12px)
+   - Consistent spacing across locked/unlocked states
+
+### Session 2025-12-29 Part 4 - Native Ads + UI Improvements (v0.2.2)
+1. **Wallet Screen Enhancement**
+   - Added entrance animation to balance card (scale transition)
+   - Converted balance card to StatefulWidget for animation support
+   - Enhanced visual design with BackdropFilter glassmorphism effect
+   - Added "Your crypto portfolio" subtitle
+   - Improved trending badge with icon and border
+   - Integrated NativeAdCard for "Ready to Trade?" offer
+   - Added "Start Learning" button with school icon and gradient
+
+2. **Practice Screen Improvements**
+   - Enhanced lock status messaging with orange container styling
+   - Added explicit "🔒 Trading Practice Locked" title
+   - Added "Almost there! 📚" motivational message
+   - Integrated NativeAdCard in locked state
+   - Improved visual hierarchy with gradients and shadows
+   - Added responsive SingleChildScrollView support
+
+3. **Native Ad Integration**
+   - Consistent placement across Lessons, Practice, and Wallet
+   - "Sponsored" label for transparency
+   - Non-intrusive secondary placements
+   - Consistent styling with NativeAdCard widget
+
+4. **Documentation**
+   - Updated WALLET_REDESIGN.md with animation and ad integration
+   - Created SESSION_4_SUMMARY.md
+   - Updated .development-workflow.md with current status
 
 ### Session 2025-12-29 Part 1 - MVP Implementation
 1. **Initial Setup**

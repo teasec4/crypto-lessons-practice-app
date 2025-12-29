@@ -1,6 +1,6 @@
 # Changelog
 
-Все значительные изменения в проекте документируются в этом файле.
+All notable changes to this project are documented in this file.
 
 ## [Unreleased]
 
@@ -11,6 +11,95 @@
 - Real API integration
 - WebSocket for real-time prices
 - Advanced trading simulator
+- Analytics tracking
+- Premium features
+
+---
+
+## [0.2.3] - 2025-12-29 (Session 5)
+
+### Changed - Complete Lesson System + Profile Synchronization
+**Lesson System Expansion:**
+- Expanded from 9 to 15 lessons (5 per difficulty category)
+- New Intermediate lessons: Candlestick Patterns, Support & Resistance, Volume Analysis
+- New Advanced lessons: Risk Management Pro, Market Psychology, Trading Automation
+- Smart unlocking: Intermediate after 5 lessons, Advanced after 10 lessons
+
+**Difficulty Spike Feature:**
+- Lesson 5 (Market Analysis) now displays as yellow/hard difficulty
+- Creates visual "hook" at end of Beginner section
+- Motivates progression to Intermediate content
+
+**Progress Header Improvements:**
+- Reduced bottom padding (24px → 16px)
+- Added divider separator line for visual distinction
+- Better visual hierarchy between header and lesson list
+
+**Level System Rebalanced:**
+- Newbie: 0-2 lessons
+- Trader: 3-7 lessons (finished Beginner)
+- Advanced: 8-12 lessons (finished Intermediate)
+- Master: 13-14 lessons
+- Legend: 15 lessons (complete)
+
+**Profile Screen Synchronization:**
+- Real-time data binding with LessonRepository
+- Auto-calculating: lessonsCompleted, EXP (250/lesson), level
+- 6 achievements with dynamic unlock logic
+- Achievements auto-unlock based on progress milestones
+
+**Wallet Padding Standardization:**
+- Unified all paddings to AppConstants
+- Removed hardcoded pixel values across all components
+- Consistent spacing in locked/unlocked states
+
+---
+
+## [0.2.2] - 2025-12-29 (Session 4)
+
+### Changed - Native Ads Integration & UI Enhancements
+**Wallet Screen:**
+- Added scale entrance animation to balance card (0.95 → 1.0 scale)
+- Converted BalanceCard to StatefulWidget for animation support
+- Added "Your crypto portfolio" subtitle for context
+- Enhanced trending badge with green icon and border styling
+- Integrated BackdropFilter for glassmorphism effect
+- Added "Start Learning" button (blue gradient, school icon)
+- Integrated NativeAdCard ("Ready to Trade?" offer) after balance
+- Improved visual hierarchy with shadows and spacing
+
+**Practice Screen:**
+- Enhanced lock status message with orange container styling
+- Added explicit "🔒 Trading Practice Locked" title
+- Added "Almost there! 📚" motivational message
+- Implemented vertical button + NativeAdCard layout
+- Added "Continue Lessons" button (primary action)
+- Integrated NativeAdCard in locked state
+- Improved responsive design with SingleChildScrollView
+- Better visual feedback with gradients and shadows
+
+**Monetization:**
+- Consistent native ad placement across Lessons, Practice, Wallet
+- "Sponsored" label for transparency
+- Non-aggressive secondary placement strategy
+- Contextually relevant offers
+
+### Technical Details
+- Used `SliverToBoxAdapter` for CustomScrollView compatibility
+- Scale animation with `CurvedAnimation` and `Curves.easeOutBack`
+- Full-width responsive buttons (56px height, touch-friendly)
+- Consistent styling with AppColors and AppConstants
+
+---
+
+## [0.2.1] - 2025-12-29 (Session 3)
+
+### Changed - Wallet CTA Enhancement
+**Wallet Screen:**
+- Replaced custom CTA cards with button + NativeAdCard layout
+- Added "Start Learning" button with gradient styling
+- Improved layout structure and spacing
+- Better visual hierarchy with primary/secondary actions
 
 ---
 

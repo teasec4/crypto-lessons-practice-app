@@ -71,7 +71,7 @@ class LessonsContent {
       description: 'Analyze cryptocurrency market trends and patterns.',
       duration: 25,
       category: LessonCategory.beginner,
-      difficulty: 2, // Medium
+      difficulty: 3, // Hard - визуально yellow для "приманки"
       isCompleted: false,
     ),
 
@@ -97,10 +97,40 @@ class LessonsContent {
       isCompleted: false,
     ),
 
+    Lesson(
+      id: 8,
+      title: 'Candlestick Patterns',
+      description: 'Learn to recognize and trade candlestick chart patterns.',
+      duration: 32,
+      category: LessonCategory.intermediate,
+      difficulty: 2, // Medium
+      isCompleted: false,
+    ),
+
+    Lesson(
+      id: 9,
+      title: 'Support & Resistance',
+      description: 'Master support and resistance levels for trading.',
+      duration: 26,
+      category: LessonCategory.intermediate,
+      difficulty: 2, // Medium
+      isCompleted: false,
+    ),
+
+    Lesson(
+      id: 10,
+      title: 'Volume Analysis',
+      description: 'Understand how to use volume in trading decisions.',
+      duration: 24,
+      category: LessonCategory.intermediate,
+      difficulty: 2, // Medium
+      isCompleted: false,
+    ),
+
     // ========== ADVANCED LESSONS ==========
 
     Lesson(
-      id: 8,
+      id: 11,
       title: 'Advanced Charts',
       description: 'Advanced charting techniques and pattern recognition.',
       duration: 35,
@@ -110,10 +140,40 @@ class LessonsContent {
     ),
 
     Lesson(
-      id: 9,
+      id: 12,
       title: 'Portfolio Management',
       description: 'Manage a diversified crypto portfolio effectively.',
       duration: 32,
+      category: LessonCategory.advanced,
+      difficulty: 3, // Hard
+      isCompleted: false,
+    ),
+
+    Lesson(
+      id: 13,
+      title: 'Risk Management Pro',
+      description: 'Advanced risk management and position sizing techniques.',
+      duration: 34,
+      category: LessonCategory.advanced,
+      difficulty: 3, // Hard
+      isCompleted: false,
+    ),
+
+    Lesson(
+      id: 14,
+      title: 'Market Psychology',
+      description: 'Understand trader psychology and emotional control.',
+      duration: 30,
+      category: LessonCategory.advanced,
+      difficulty: 3, // Hard
+      isCompleted: false,
+    ),
+
+    Lesson(
+      id: 15,
+      title: 'Trading Automation',
+      description: 'Create and manage automated trading systems.',
+      duration: 38,
       category: LessonCategory.advanced,
       difficulty: 4, // Very Hard
       isCompleted: false,

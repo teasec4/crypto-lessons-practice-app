@@ -19,6 +19,10 @@ class NativeAdCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDarkTheme = Theme.of(context).brightness == Brightness.dark;
+    final textColor = isDarkTheme ? Colors.white.withOpacity(0.87) : Colors.black87;
+    final subtextColor = isDarkTheme ? Colors.grey[300] : Colors.grey[700];
+    
     return Container(
       decoration: BoxDecoration(
         border: Border.all(
@@ -26,7 +30,9 @@ class NativeAdCard extends StatelessWidget {
           width: 1.5,
         ),
         borderRadius: BorderRadius.circular(AppConstants.radiusMedium),
-        color: Colors.grey.withOpacity(0.02),
+        color: isDarkTheme 
+          ? AppColors.primary.withOpacity(0.08)
+          : Colors.grey.withOpacity(0.02),
       ),
       child: Column(
         children: [
@@ -70,7 +76,7 @@ class NativeAdCard extends StatelessWidget {
                         title,
                         style: Theme.of(context).textTheme.titleSmall?.copyWith(
                           fontWeight: FontWeight.w700,
-                          color: Colors.black87,
+                          color: textColor,
                         ),
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
@@ -79,7 +85,7 @@ class NativeAdCard extends StatelessWidget {
                       Text(
                         description,
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: Colors.grey[700],
+                          color: subtextColor,
                           height: 1.4,
                         ),
                         maxLines: 2,
@@ -148,7 +154,7 @@ class NativeAdCard extends StatelessWidget {
             child: Text(
               'Sponsored',
               style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                color: Colors.grey[600],
+                color: isDarkTheme ? Colors.grey[400] : Colors.grey[600],
                 fontSize: 11,
                 fontWeight: FontWeight.w500,
                 letterSpacing: 0.3,

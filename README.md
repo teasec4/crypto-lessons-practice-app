@@ -5,31 +5,52 @@ A Flutter educational app that teaches cryptocurrency trading fundamentals throu
 ## Features
 
 ### 📚 Lessons
-- 9 structured lessons (5 Beginner, 2 Intermediate, 2 Advanced)
-- Categorized by difficulty level
-- Progressive unlocking system based on prerequisites
-- Detailed lesson content with visual difficulty indicators
-- Progress tracking per lesson
+- 15 structured lessons (5 Beginner, 5 Intermediate, 5 Advanced)
+- Categorized by difficulty level with visual indicators
+- Progressive unlocking system (Intermediate after 5, Advanced after 10 lessons)
+- Detailed lesson content with multi-page content system
+- Progress tracking with motivating level system (Newbie → Legend)
+- **Sticky progress header** with live level and completion stats
+- 5th Beginner lesson highlighted in yellow as "difficulty spike"
+- Native ad integration
+- Lesson detail screen with visual difficulty indicators
 
 ### 💰 Wallet
 - Virtual wallet with 1000+ USD starting balance
 - Multi-cryptocurrency support (USDT, BTC, ETH, XRP, SOL)
 - Real-time price display with 24h changes
+- Animated balance card with entrance effect
 - Send/Receive transaction UI
 - Asset management interface
+- Native ad placement for trading offers
 
 ### 🎮 Practice
-- Trading simulator with unlocking requirements
+- Trading simulator with unlocking requirements (5 beginner lessons)
 - Gamified progression system
-- Unlocks after completing 5 beginner lessons
-- Interactive trading experience with mock market data
+- Enhanced locked state messaging with "Go to Lessons" button
+- Clear requirements display
+- Native ad integration
+- Visual hierarchy with gradients and shadows
 
 ### 👤 Profile
-- User level and experience (EXP) tracking
-- Achievement system with visual indicators
-- Progress visualization
-- Settings management
-- User preferences and security options
+- User level and experience (EXP) tracking (250 EXP per lesson)
+- Achievement system with 6 achievements, auto-unlocking based on progress
+- Progress visualization synced with actual lesson completion
+- Settings management (Preferences, Security, General)
+- User preferences and notification toggle
+- **Synchronized achievements:**
+  - 🚀 First Step (1+ lesson)
+  - 📚 Quick Learner (5+ lessons)
+  - 🏆 Trading Master (10+ lessons)
+  - ⭐ Legendary Trader (all 15 lessons)
+  - 📈 Intermediate Path (5+ lessons)
+  - 🎯 Advanced Mastery (10+ lessons)
+
+### 🎯 Monetization
+- Native ad cards with "Sponsored" label for transparency
+- Integrated in Lessons, Practice, and Wallet screens
+- Non-intrusive secondary placements
+- Contextually relevant offers
 
 ## Tech Stack
 
@@ -39,6 +60,7 @@ A Flutter educational app that teaches cryptocurrency trading fundamentals throu
 - **Theme:** Material Design 3 with Light/Dark support
 - **State Management:** BLoC (planned)
 - **Database:** Drift/SQLite (planned)
+- **Animations:** Built-in Flutter animations (scale, opacity, transitions)
 
 ## Project Structure
 
@@ -81,6 +103,13 @@ See [PROGRESS.md](PROGRESS.md) for detailed progress tracking and completed feat
 - Achievement system
 - Progress tracking
 
+### Phase 1.5 (UI Polish + Monetization) - ✅ Complete
+- Motivating level system (Newbie → Legend)
+- Enhanced lesson tiles with gradient backgrounds
+- Animated balance card with entrance effect
+- Native ad integration (Lessons, Wallet, Practice)
+- Improved visual hierarchy and spacing
+
 ### Phase 2 (In Progress)
 - [ ] BLoC state management
 - [ ] Drift SQLite database
@@ -92,6 +121,8 @@ See [PROGRESS.md](PROGRESS.md) for detailed progress tracking and completed feat
 - [ ] Advanced trading simulator
 - [ ] Local notifications
 - [ ] Data persistence
+- [ ] Analytics tracking
+- [ ] Premium features
 
 ## License
 

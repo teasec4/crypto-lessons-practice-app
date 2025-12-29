@@ -18,7 +18,10 @@ class LessonTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isCompleted = lesson.isCompleted;
-    final titleColor = isCompleted ? Colors.black87 : Colors.grey[600];
+    final isDarkTheme = Theme.of(context).brightness == Brightness.dark;
+    final titleColor = isCompleted 
+        ? (isDarkTheme ? Colors.white.withOpacity(0.87) : Colors.black87)
+        : (isDarkTheme ? Colors.grey[400] : Colors.grey[600]);
     final borderColor = isCompleted
         ? AppColors.primary.withOpacity(0.15)
         : Colors.grey.withOpacity(0.15);
@@ -120,14 +123,14 @@ class LessonTile extends StatelessWidget {
                             Icon(
                               Icons.timer_outlined,
                               size: 14,
-                              color: Colors.grey[500],
+                              color: isDarkTheme ? Colors.grey[400] : Colors.grey[500],
                             ),
                             const SizedBox(width: 6),
                             Text(
                               '${lesson.duration}m',
                               style: Theme.of(context).textTheme.bodySmall
                                   ?.copyWith(
-                                    color: Colors.grey[500],
+                                    color: isDarkTheme ? Colors.grey[400] : Colors.grey[500],
                                     fontWeight: FontWeight.w500,
                                   ),
                             ),

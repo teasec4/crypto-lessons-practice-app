@@ -145,7 +145,7 @@ class WalletScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        const SizedBox(width: 12),
+                        const SizedBox(width: AppConstants.paddingSmall),
                         Expanded(
                           child: SizedBox(
                             height: 48,
@@ -168,7 +168,7 @@ class WalletScreen extends StatelessWidget {
                                       size: 16,
                                       color: Colors.grey,
                                     ),
-                                    SizedBox(width: 6),
+                                    SizedBox(width: AppConstants.paddingXSmall),
                                     Text(
                                       'Start Earning',
                                       style: TextStyle(
@@ -257,7 +257,7 @@ class WalletScreen extends StatelessWidget {
             SliverToBoxAdapter(
               child: Container(
                 margin: const EdgeInsets.all(AppConstants.paddingMedium),
-                padding: const EdgeInsets.all(12),
+                padding: const EdgeInsets.all(AppConstants.paddingMedium),
                 decoration: BoxDecoration(
                   color: AppColors.primary.withOpacity(0.05),
                   border: Border.all(
@@ -275,7 +275,7 @@ class WalletScreen extends StatelessWidget {
                         color: AppColors.primary,
                       ),
                     ),
-                    const SizedBox(height: 8),
+                    const SizedBox(height: AppConstants.paddingSmall),
                     Text(
                       'Finish $requiredLessons foundational lessons to unlock your wallet and start earning.',
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
@@ -399,47 +399,47 @@ class WalletScreen extends StatelessWidget {
               ],
             ),
             const SizedBox(height: AppConstants.paddingLarge),
-            Text(
-              '****',
-              style: const TextStyle(
-                fontSize: 48,
-                fontWeight: FontWeight.w900,
-                color: AppColors.primary,
-                letterSpacing: 12,
-              ),
-            ),
-            const SizedBox(height: 12),
-            Container(
-              padding: const EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                color: AppColors.primary.withOpacity(0.1),
-                borderRadius: BorderRadius.circular(AppConstants.radiusMedium),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Complete $remaining more lesson${remaining != 1 ? 's' : ''}',
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      fontWeight: FontWeight.w700,
-                      color: AppColors.primary,
-                    ),
-                  ),
-                  const SizedBox(height: 6),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(AppConstants.radiusSmall),
-                    child: LinearProgressIndicator(
-                      value: lessonsCompleted / requiredLessons,
-                      minHeight: 4,
-                      backgroundColor: Colors.grey.withOpacity(0.2),
-                      valueColor: const AlwaysStoppedAnimation<Color>(
-                        AppColors.primary,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+             Text(
+               '\$****',
+               style: const TextStyle(
+                 fontSize: 48,
+                 fontWeight: FontWeight.w900,
+                 color: AppColors.primary,
+                 letterSpacing: 12,
+               ),
+             ),
+             const SizedBox(height: AppConstants.paddingMedium),
+             Container(
+               padding: const EdgeInsets.all(AppConstants.paddingMedium),
+               decoration: BoxDecoration(
+                 color: AppColors.primary.withOpacity(0.1),
+                 borderRadius: BorderRadius.circular(AppConstants.radiusMedium),
+               ),
+               child: Column(
+                 crossAxisAlignment: CrossAxisAlignment.start,
+                 children: [
+                   Text(
+                     'Complete $remaining more lesson${remaining != 1 ? 's' : ''}',
+                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                       fontWeight: FontWeight.w700,
+                       color: AppColors.primary,
+                     ),
+                   ),
+                   const SizedBox(height: AppConstants.paddingSmall),
+                   ClipRRect(
+                     borderRadius: BorderRadius.circular(AppConstants.radiusSmall),
+                     child: LinearProgressIndicator(
+                       value: lessonsCompleted / requiredLessons,
+                       minHeight: 4,
+                       backgroundColor: Colors.grey.withOpacity(0.2),
+                       valueColor: const AlwaysStoppedAnimation<Color>(
+                         AppColors.primary,
+                       ),
+                     ),
+                   ),
+                 ],
+               ),
+             ),
           ],
         ),
       ),
@@ -484,7 +484,7 @@ class WalletScreen extends StatelessWidget {
                     fontSize: 14,
                   ),
                 ),
-                const SizedBox(height: 4),
+                const SizedBox(height: AppConstants.paddingXSmall),
                 Text(
                   '**** ${asset.symbol}',
                   style: TextStyle(
@@ -506,11 +506,11 @@ class WalletScreen extends StatelessWidget {
                   fontSize: 14,
                 ),
               ),
-              const SizedBox(height: 4),
+              const SizedBox(height: AppConstants.paddingXSmall),
               Container(
                 padding: const EdgeInsets.symmetric(
-                  horizontal: 8,
-                  vertical: 2,
+                  horizontal: AppConstants.paddingXSmall,
+                  vertical: AppConstants.paddingXSmall,
                 ),
                 decoration: BoxDecoration(
                   color: Colors.grey.withOpacity(0.1),
