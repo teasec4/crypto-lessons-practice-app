@@ -165,7 +165,121 @@
 
 ---
 
+## Session 4: UI Improvements & Native Ads Integration
+
+### Goals
+- Enhance Wallet screen with animations and improved layout
+- Improve Practice screen locked state messaging
+- Integrate native ad cards consistently across 4 screens
+- Consolidate documentation structure
+- Prepare codebase for next phase
+
+### Completed
+
+#### Wallet Screen Enhancements
+- ✅ Added scale entrance animation to Balance Card (0.95 → 1.0)
+- ✅ Converted Balance Card to StatefulWidget
+- ✅ Enhanced visual depth with improved shadows
+- ✅ Added "Your crypto portfolio" subtitle
+- ✅ Added trending badge with dynamic icon
+- ✅ Replaced dual CTA cards with button + native ad layout
+- ✅ Full-width "Start Learning" button
+- ✅ Native ad card below CTA
+
+#### Practice Screen Improvements
+- ✅ Enhanced lock status messaging with clear requirements
+- ✅ Added 🔒 icon and calm messaging
+- ✅ Replaced dual buttons with "Continue Lessons" + native ad
+- ✅ Better visual hierarchy
+- ✅ Improved mobile responsiveness
+
+#### Native Ads Implementation
+- ✅ Created reusable NativeAdCard component (core/widgets/)
+- ✅ Integrated ads on Lessons screen (lesson completion)
+- ✅ Integrated ads on Practice screen (locked state)
+- ✅ Integrated ads on Wallet screen (below balance)
+- ✅ Integrated ads on Profile screen (between sections)
+- ✅ All ads marked "Sponsored" for transparency
+- ✅ Consistent design across all placements
+
+#### Code Organization
+- ✅ Moved NativeAdCard from features/ to core/widgets/
+- ✅ Updated all 4 screen imports (lessons, practice, wallet, profile)
+- ✅ No functionality changes, just structural organization
+
+#### Documentation
+- ✅ Created .development-workflow.md (AI workflow guide)
+- ✅ Created docs/features/LESSONS.md (detailed lesson guide)
+- ✅ Created docs/features/PRACTICE.md (detailed practice guide)
+- ✅ Created docs/features/WALLET.md (detailed wallet guide)
+- ✅ Created docs/features/PROFILE.md (detailed profile guide)
+- ✅ Created docs/features/MONETIZATION.md (ads & revenue guide)
+- ✅ Reorganized docs/INDEX.md (clearer navigation)
+- ✅ Updated daily.md with session 4 notes
+
+### Architecture Patterns Established
+
+#### Layout Pattern: Action + Monetization
+```
+[Full Width CTA Button]
+        ↓
+[Native Ad Card]
+```
+Used in: Practice (locked), Wallet, Profile
+
+#### Design Consistency
+- Native ads use same styling across all screens
+- "Sponsored" label for transparency
+- Non-aggressive placement (secondary position)
+- Contextually relevant offers
+
+### Technical Details
+
+**SliverToBoxAdapter Explanation:**
+- Converts regular Box widgets to Sliver widgets
+- Needed for use in CustomScrollView
+- Used in all screens for responsive scrolling
+
+**Native Ad Card Specs:**
+- Reusable component with custom copy
+- Left: Icon + gradient background
+- Right: Title (2 lines) + Description (2 lines) + Button
+- Bottom: "Sponsored" label
+- Import: `core/widgets/native_ad_card.dart`
+
+### Files Modified
+1. lib/features/wallet/presentation/screens/wallet_screen.dart
+2. lib/features/wallet/presentation/widgets/balance_card.dart
+3. lib/features/practice/presentation/screens/practice_screen.dart
+4. lib/features/profile/presentation/screens/profile_screen.dart
+5. lib/features/lessons/presentation/screens/lesson_content_screen.dart
+
+### Files Created
+1. lib/core/widgets/native_ad_card.dart
+2. .development-workflow.md
+3. docs/features/LESSONS.md
+4. docs/features/PRACTICE.md
+5. docs/features/WALLET.md
+6. docs/features/PROFILE.md
+7. docs/features/MONETIZATION.md
+8. docs/INDEX.md (reorganized)
+
+### Key Improvements
+1. **Monetization**: Native ads on 4 screens, ready for AdMob integration
+2. **UX**: Clearer messaging and better button placement
+3. **Code**: Reusable ad component, centered in core/widgets/
+4. **Documentation**: Feature-specific guides for easier development
+5. **Workflow**: AI workflow guide for consistent development process
+
+### Status
+- ✅ All features working
+- ✅ No errors or warnings
+- ✅ Responsive on all screen sizes
+- ✅ Ready for Phase 2 (state management + database)
+
+---
+
 ## Current Version
-- **v0.1.1** - UI Polish & Gamification
-- **Status**: ✅ MVP + UI enhancements complete, ready for Phase 2 (BLoC + Database)
-- **Release Date**: 2025-12-29 (Session 2)
+- **v0.2.2** - UI Improvements & Native Ads
+- **Status**: ✅ MVP + UI + Monetization complete, ready for Phase 2 (BLoC + Database)
+- **Release Date**: 2025-12-29 (Session 4)

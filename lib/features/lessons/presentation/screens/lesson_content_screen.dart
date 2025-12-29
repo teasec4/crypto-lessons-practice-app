@@ -94,25 +94,45 @@ class _LessonContentScreenState extends State<LessonContentScreen> {
                 SizedBox(
                   width: double.infinity,
                   height: 48,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.primary,
-                      shape: RoundedRectangleBorder(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [
+                          AppColors.primary,
+                          AppColors.primary.withOpacity(0.8),
+                        ],
+                      ),
+                      borderRadius: BorderRadius.circular(
+                        AppConstants.radiusMedium,
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: AppColors.primary.withOpacity(0.3),
+                          blurRadius: 6,
+                          offset: const Offset(0, 2),
+                        ),
+                      ],
+                    ),
+                    child: Material(
+                      color: Colors.transparent,
+                      child: InkWell(
+                        onTap: () {
+                          context.pop(); // Close dialog
+                          context.go('/lessons'); // Go back to all lessons
+                        },
                         borderRadius: BorderRadius.circular(
                           AppConstants.radiusMedium,
                         ),
-                      ),
-                    ),
-                    onPressed: () {
-                      context.pop(); // Close dialog
-                      context.pop(); // Close content screen
-                    },
-                    child: const Text(
-                      'Back to Lesson',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.white,
+                        child: const Center(
+                          child: Text(
+                            'Back to Lessons',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
                       ),
                     ),
                   ),
