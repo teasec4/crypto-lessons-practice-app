@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:crypto_trading_lessons/features/lessons/domain/entities/lesson.dart';
 import 'package:crypto_trading_lessons/features/lessons/presentation/widgets/lesson_tile.dart';
 import 'package:crypto_trading_lessons/core/constants/index.dart';
@@ -36,12 +37,7 @@ class LessonsScreen extends StatelessWidget {
           return LessonTile(
             lesson: lessons[index],
             onTap: () {
-              // TODO: Navigate to lesson detail
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text('Lesson ${lessons[index].id} tapped'),
-                ),
-              );
+              context.go('/lessons/${lessons[index].id}');
             },
           );
         },
