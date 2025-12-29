@@ -1,8 +1,4 @@
-enum LessonCategory {
-  beginner,
-  intermediate,
-  advanced,
-}
+enum LessonCategory { beginner, intermediate, advanced }
 
 class Lesson {
   final int id;

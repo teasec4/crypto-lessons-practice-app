@@ -5,11 +5,7 @@ class SettingsSection extends StatelessWidget {
   final String title;
   final List<SettingsTile> tiles;
 
-  const SettingsSection({
-    super.key,
-    required this.title,
-    required this.tiles,
-  });
+  const SettingsSection({super.key, required this.title, required this.tiles});
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +20,9 @@ class SettingsSection extends StatelessWidget {
           child: Text(
             title,
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.w600,
-                  color: AppColors.primary,
-                ),
+              fontWeight: FontWeight.w600,
+              color: AppColors.primary,
+            ),
           ),
         ),
         ...tiles.asMap().entries.map((entry) {
@@ -61,10 +57,7 @@ class _TileWidget extends StatelessWidget {
   final SettingsTile tile;
   final bool isLast;
 
-  const _TileWidget({
-    required this.tile,
-    required this.isLast,
-  });
+  const _TileWidget({required this.tile, required this.isLast});
 
   @override
   Widget build(BuildContext context) {
@@ -81,11 +74,7 @@ class _TileWidget extends StatelessWidget {
               ),
               child: Row(
                 children: [
-                  Icon(
-                    tile.icon,
-                    color: AppColors.primary,
-                    size: 24,
-                  ),
+                  Icon(tile.icon, color: AppColors.primary, size: 24),
                   const SizedBox(width: AppConstants.paddingMedium),
                   Expanded(
                     child: Column(
@@ -102,8 +91,7 @@ class _TileWidget extends StatelessWidget {
                             ),
                             child: Text(
                               tile.subtitle!,
-                              style:
-                                  Theme.of(context).textTheme.bodySmall,
+                              style: Theme.of(context).textTheme.bodySmall,
                             ),
                           ),
                       ],
@@ -111,10 +99,7 @@ class _TileWidget extends StatelessWidget {
                   ),
                   if (tile.trailing != null) tile.trailing!,
                   if (tile.trailing == null)
-                    const Icon(
-                      Icons.chevron_right,
-                      color: AppColors.primary,
-                    ),
+                    const Icon(Icons.chevron_right, color: AppColors.primary),
                 ],
               ),
             ),
@@ -123,10 +108,7 @@ class _TileWidget extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(
                   horizontal: AppConstants.paddingMedium,
                 ),
-                child: Divider(
-                  height: 1,
-                  color: Colors.grey.withOpacity(0.2),
-                ),
+                child: Divider(height: 1, color: Colors.grey.withOpacity(0.2)),
               ),
           ],
         ),

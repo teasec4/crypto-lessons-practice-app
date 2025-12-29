@@ -6,10 +6,7 @@ import 'package:crypto_trading_lessons/features/lessons/data/lesson_repository.d
 class LessonDetailScreen extends StatefulWidget {
   final int lessonId;
 
-  const LessonDetailScreen({
-    super.key,
-    required this.lessonId,
-  });
+  const LessonDetailScreen({super.key, required this.lessonId});
 
   @override
   State<LessonDetailScreen> createState() => _LessonDetailScreenState();
@@ -161,33 +158,46 @@ class _LessonDetailScreenState extends State<LessonDetailScreen> {
                   SizedBox(
                     width: double.infinity,
                     height: 54,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColors.primary,
-                        shape: RoundedRectangleBorder(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [
+                            AppColors.primary,
+                            AppColors.primary.withOpacity(0.8),
+                          ],
+                        ),
+                        borderRadius: BorderRadius.circular(
+                          AppConstants.radiusMedium,
+                        ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: AppColors.primary.withOpacity(0.3),
+                            blurRadius: 8,
+                            offset: const Offset(0, 2),
+                          ),
+                        ],
+                      ),
+                      child: Material(
+                        color: Colors.transparent,
+                        child: InkWell(
+                          onTap: () {
+                            context.go('/lessons/${lesson.id}/content');
+                          },
                           borderRadius: BorderRadius.circular(
                             AppConstants.radiusMedium,
                           ),
-                        ),
-                      ),
-                      onPressed: () {
-                        setState(() {
-                          isCompleted = true;
-                        });
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(
-                              'Lesson ${lesson.id} completed! 🎉',
+                          child: Center(
+                            child: Text(
+                              lesson.isCompleted
+                                  ? 'Review Lesson'
+                                  : 'Start Lesson',
+                              style: const TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
-                        );
-                      },
-                      child: Text(
-                        lesson.isCompleted ? 'Review Lesson' : 'Start Lesson',
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.white,
                         ),
                       ),
                     ),
@@ -212,15 +222,11 @@ class _LessonDetailScreenState extends State<LessonDetailScreen> {
     return sections
         .map(
           (section) => Padding(
-            padding: const EdgeInsets.only(
-              bottom: AppConstants.paddingMedium,
-            ),
+            padding: const EdgeInsets.only(bottom: AppConstants.paddingMedium),
             child: Container(
               padding: const EdgeInsets.all(AppConstants.paddingMedium),
               decoration: BoxDecoration(
-                border: Border.all(
-                  color: AppColors.primary.withOpacity(0.2),
-                ),
+                border: Border.all(color: AppColors.primary.withOpacity(0.2)),
                 borderRadius: BorderRadius.circular(AppConstants.radiusMedium),
               ),
               child: Row(

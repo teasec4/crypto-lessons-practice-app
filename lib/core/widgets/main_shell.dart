@@ -6,15 +6,12 @@ import 'package:crypto_trading_lessons/core/constants/app_colors.dart';
 class MainShell extends StatelessWidget {
   final Widget child;
 
-  const MainShell({
-    super.key,
-    required this.child,
-  });
+  const MainShell({super.key, required this.child});
 
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    
+
     return Scaffold(
       body: child,
       bottomNavigationBar: Container(
@@ -31,22 +28,13 @@ class MainShell extends StatelessWidget {
           currentIndex: _getCurrentIndex(context),
           onTap: (index) => _navigateTo(context, index),
           items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.school),
-              label: 'Lessons',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.wallet),
-              label: 'Wallet',
-            ),
+            BottomNavigationBarItem(icon: Icon(Icons.school), label: 'Lessons'),
+            BottomNavigationBarItem(icon: Icon(Icons.wallet), label: 'Wallet'),
             BottomNavigationBarItem(
               icon: Icon(Icons.trending_up),
               label: 'Practice',
             ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              label: 'Profile',
-            ),
+            BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
           ],
         ),
       ),

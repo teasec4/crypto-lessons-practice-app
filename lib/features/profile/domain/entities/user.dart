@@ -20,5 +20,6 @@ class User {
   });
 
   int get expToNextLevel => (level * 1000);
-  double get progressToNextLevel => (totalExp % expToNextLevel) / expToNextLevel;
+  double get progressToNextLevel =>
+      (totalExp % expToNextLevel) / expToNextLevel;
 }

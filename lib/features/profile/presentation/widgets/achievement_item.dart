@@ -5,10 +5,7 @@ import 'package:crypto_trading_lessons/features/profile/domain/entities/achievem
 class AchievementItem extends StatelessWidget {
   final Achievement achievement;
 
-  const AchievementItem({
-    super.key,
-    required this.achievement,
-  });
+  const AchievementItem({super.key, required this.achievement});
 
   @override
   Widget build(BuildContext context) {
@@ -45,9 +42,9 @@ class AchievementItem extends StatelessWidget {
             child: Text(
               achievement.title,
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    fontWeight: FontWeight.w600,
-                  ),
+              style: Theme.of(
+                context,
+              ).textTheme.bodySmall?.copyWith(fontWeight: FontWeight.w600),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),

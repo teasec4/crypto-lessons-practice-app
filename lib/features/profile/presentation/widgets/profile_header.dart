@@ -5,10 +5,7 @@ import 'package:crypto_trading_lessons/features/profile/domain/entities/user.dar
 class ProfileHeader extends StatelessWidget {
   final User user;
 
-  const ProfileHeader({
-    super.key,
-    required this.user,
-  });
+  const ProfileHeader({super.key, required this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -40,10 +37,7 @@ class ProfileHeader extends StatelessWidget {
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: Colors.white.withOpacity(0.2),
-                border: Border.all(
-                  color: Colors.white,
-                  width: 2,
-                ),
+                border: Border.all(color: Colors.white, width: 2),
               ),
               child: Center(
                 child: Text(
@@ -81,18 +75,12 @@ class ProfileHeader extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                _StatItem(
-                  label: 'Level',
-                  value: user.level.toString(),
-                ),
+                _StatItem(label: 'Level', value: user.level.toString()),
                 _StatItem(
                   label: 'Lessons',
                   value: user.lessonsCompleted.toString(),
                 ),
-                _StatItem(
-                  label: 'EXP',
-                  value: '${user.totalExp}',
-                ),
+                _StatItem(label: 'EXP', value: '${user.totalExp}'),
               ],
             ),
             const SizedBox(height: AppConstants.paddingMedium),
@@ -110,8 +98,7 @@ class ProfileHeader extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 ClipRRect(
-                  borderRadius:
-                      BorderRadius.circular(AppConstants.radiusSmall),
+                  borderRadius: BorderRadius.circular(AppConstants.radiusSmall),
                   child: LinearProgressIndicator(
                     value: user.progressToNextLevel,
                     minHeight: 6,
@@ -134,10 +121,7 @@ class _StatItem extends StatelessWidget {
   final String label;
   final String value;
 
-  const _StatItem({
-    required this.label,
-    required this.value,
-  });
+  const _StatItem({required this.label, required this.value});
 
   @override
   Widget build(BuildContext context) {
@@ -154,10 +138,7 @@ class _StatItem extends StatelessWidget {
         const SizedBox(height: 4),
         Text(
           label,
-          style: TextStyle(
-            fontSize: 12,
-            color: Colors.white.withOpacity(0.8),
-          ),
+          style: TextStyle(fontSize: 12, color: Colors.white.withOpacity(0.8)),
         ),
       ],
     );

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:crypto_trading_lessons/core/constants/index.dart';
 import 'package:crypto_trading_lessons/features/wallet/domain/entities/crypto_asset.dart';
 import 'package:crypto_trading_lessons/features/wallet/domain/entities/wallet.dart';
 import 'package:crypto_trading_lessons/features/wallet/presentation/widgets/balance_card.dart';
 import 'package:crypto_trading_lessons/features/wallet/presentation/widgets/asset_item.dart';
+import 'package:crypto_trading_lessons/features/lessons/presentation/widgets/native_ad_card.dart';
 
 class WalletScreen extends StatelessWidget {
   const WalletScreen({super.key});
@@ -61,10 +63,7 @@ class WalletScreen extends StatelessWidget {
     );
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Wallet'),
-        elevation: 0,
-      ),
+      appBar: AppBar(title: const Text('Wallet'), elevation: 0),
       body: CustomScrollView(
         slivers: [
           // Balance card
@@ -84,6 +83,90 @@ class WalletScreen extends StatelessWidget {
             ),
           ),
 
+          // CTA Section - Button and Native Ad
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.all(AppConstants.paddingMedium),
+              child: Column(
+                children: [
+                  // Main button - Learn Trading
+                  SizedBox(
+                    width: double.infinity,
+                    height: 56,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [
+                            AppColors.primary,
+                            AppColors.primary.withOpacity(0.8),
+                          ],
+                        ),
+                        borderRadius: BorderRadius.circular(
+                          AppConstants.radiusMedium,
+                        ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: AppColors.primary.withOpacity(0.3),
+                            blurRadius: 8,
+                            offset: const Offset(0, 2),
+                          ),
+                        ],
+                      ),
+                      child: Material(
+                        color: Colors.transparent,
+                        child: InkWell(
+                          onTap: () {
+                            context.go('/lessons');
+                          },
+                          borderRadius: BorderRadius.circular(
+                            AppConstants.radiusMedium,
+                          ),
+                          child: const Center(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.school,
+                                  color: Colors.white,
+                                  size: 20,
+                                ),
+                                SizedBox(width: 8),
+                                Text(
+                                  'Start Learning',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w800,
+                                    color: Colors.white,
+                                    letterSpacing: 0.5,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: AppConstants.paddingMedium),
+                  // Native Ad Card
+                  NativeAdCard(
+                    title: 'Ready to Trade?',
+                    description:
+                        'Practice with real charts and market data on our trading platform.',
+                    buttonText: 'Start Trading',
+                    onTap: () {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Opening trading platform...'),
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ),
+          ),
+
           // Assets header
           SliverToBoxAdapter(
             child: Padding(
@@ -100,28 +183,23 @@ class WalletScreen extends StatelessWidget {
 
           // Assets list
           SliverList(
-            delegate: SliverChildBuilderDelegate(
-              (context, index) {
-                return AssetItem(
-                  asset: wallet.assets[index],
-                  onTap: () {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text('${wallet.assets[index].name} tapped'),
-                      ),
-                    );
-                  },
-                );
-              },
-              childCount: wallet.assets.length,
-            ),
+            delegate: SliverChildBuilderDelegate((context, index) {
+              return AssetItem(
+                asset: wallet.assets[index],
+                onTap: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('${wallet.assets[index].name} tapped'),
+                    ),
+                  );
+                },
+              );
+            }, childCount: wallet.assets.length),
           ),
 
           // Bottom padding
           SliverToBoxAdapter(
-            child: SizedBox(
-              height: AppConstants.paddingMedium,
-            ),
+            child: SizedBox(height: AppConstants.paddingMedium),
           ),
         ],
       ),

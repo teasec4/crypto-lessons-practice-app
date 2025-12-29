@@ -5,11 +5,7 @@ class Wallet {
   final String address;
   final List<CryptoAsset> assets;
 
-  const Wallet({
-    required this.id,
-    required this.address,
-    required this.assets,
-  });
+  const Wallet({required this.id, required this.address, required this.assets});
 
   double get totalBalance {
     return assets.fold(0, (sum, asset) => sum + asset.totalValue);

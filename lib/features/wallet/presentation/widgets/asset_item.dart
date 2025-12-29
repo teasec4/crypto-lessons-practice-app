@@ -6,11 +6,7 @@ class AssetItem extends StatelessWidget {
   final CryptoAsset asset;
   final VoidCallback? onTap;
 
-  const AssetItem({
-    super.key,
-    required this.asset,
-    this.onTap,
-  });
+  const AssetItem({super.key, required this.asset, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -54,16 +50,16 @@ class AssetItem extends StatelessWidget {
                   Text(
                     asset.name,
                     style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                          fontWeight: FontWeight.w600,
-                        ),
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                   const SizedBox(height: 4),
                   Text(
                     '${asset.balance.toStringAsFixed(4)} ${asset.symbol}',
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: AppColors.secondary,
-                          fontWeight: FontWeight.w500,
-                        ),
+                      color: AppColors.secondary,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                 ],
               ),
@@ -75,9 +71,9 @@ class AssetItem extends StatelessWidget {
               children: [
                 Text(
                   '\$${asset.totalValue.toStringAsFixed(2)}',
-                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        fontWeight: FontWeight.w600,
-                      ),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.w600),
                 ),
                 const SizedBox(height: 4),
                 Container(
@@ -89,8 +85,9 @@ class AssetItem extends StatelessWidget {
                     color: isPositive
                         ? AppColors.success.withOpacity(0.1)
                         : AppColors.error.withOpacity(0.1),
-                    borderRadius:
-                        BorderRadius.circular(AppConstants.radiusSmall),
+                    borderRadius: BorderRadius.circular(
+                      AppConstants.radiusSmall,
+                    ),
                   ),
                   child: Text(
                     '${isPositive ? '+' : ''}${asset.change24h.toStringAsFixed(2)}%',

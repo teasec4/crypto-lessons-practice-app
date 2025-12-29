@@ -5,6 +5,7 @@ import 'package:crypto_trading_lessons/features/profile/domain/entities/achievem
 import 'package:crypto_trading_lessons/features/profile/presentation/widgets/profile_header.dart';
 import 'package:crypto_trading_lessons/features/profile/presentation/widgets/achievement_item.dart';
 import 'package:crypto_trading_lessons/features/profile/presentation/widgets/settings_section.dart';
+import 'package:crypto_trading_lessons/features/lessons/presentation/widgets/native_ad_card.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -84,16 +85,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
     ];
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Profile'),
-        elevation: 0,
-      ),
+      appBar: AppBar(title: const Text('Profile'), elevation: 0),
       body: CustomScrollView(
         slivers: [
           // Profile Header
-          SliverToBoxAdapter(
-            child: ProfileHeader(user: mockUser),
-          ),
+          SliverToBoxAdapter(child: ProfileHeader(user: mockUser)),
 
           // Achievements Section
           SliverToBoxAdapter(
@@ -123,6 +119,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
           ),
 
+          // Native Ad - Sponsored Content
+          SliverToBoxAdapter(
+           child: Padding(
+             padding: const EdgeInsets.all(AppConstants.paddingMedium),
+             child: NativeAdCard(
+               title: 'Boost Your Trading',
+               description: 'Upgrade to Pro and unlock advanced strategies with real-time analytics.',
+               buttonText: 'Explore Premium',
+               onTap: () {
+                 ScaffoldMessenger.of(context).showSnackBar(
+                   const SnackBar(
+                     content: Text('Premium features coming soon'),
+                   ),
+                 );
+               },
+             ),
+           ),
+          ),
+
           // Settings Sections
           SliverToBoxAdapter(
             child: Column(
@@ -133,9 +148,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   tiles: [
                     SettingsTile(
                       title: 'Notifications',
-                      subtitle: notificationsEnabled
-                          ? 'Enabled'
-                          : 'Disabled',
+                      subtitle: notificationsEnabled ? 'Enabled' : 'Disabled',
                       icon: Icons.notifications,
                       trailing: Switch(
                         value: notificationsEnabled,
@@ -152,9 +165,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       icon: Icons.attach_money,
                       onTap: () {
                         ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text('Currency settings'),
-                          ),
+                          const SnackBar(content: Text('Currency settings')),
                         );
                       },
                     ),
@@ -168,9 +179,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       icon: Icons.lock,
                       onTap: () {
                         ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text('Change password'),
-                          ),
+                          const SnackBar(content: Text('Change password')),
                         );
                       },
                     ),
@@ -181,9 +190,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       onTap: () {
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
-                            content: Text(
-                              'Two-factor authentication',
-                            ),
+                            content: Text('Two-factor authentication'),
                           ),
                         );
                       },
@@ -198,9 +205,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       icon: Icons.info,
                       onTap: () {
                         ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text('About app'),
-                          ),
+                          const SnackBar(content: Text('About app')),
                         );
                       },
                     ),
@@ -209,9 +214,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       icon: Icons.logout,
                       onTap: () {
                         ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text('Logging out...'),
-                          ),
+                          const SnackBar(content: Text('Logging out...')),
                         );
                       },
                       showDivider: false,
@@ -224,9 +227,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
           // Bottom padding
           SliverToBoxAdapter(
-            child: SizedBox(
-              height: AppConstants.paddingLarge,
-            ),
+            child: SizedBox(height: AppConstants.paddingLarge),
           ),
         ],
       ),
