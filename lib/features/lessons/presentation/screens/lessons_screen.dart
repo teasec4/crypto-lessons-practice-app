@@ -43,131 +43,135 @@ class _LessonsScreenState extends State<LessonsScreen> {
 
     return Scaffold(
       appBar: AppBar(title: const Text('Lessons'), elevation: 0),
-      body: CustomScrollView(
-        slivers: [
-          // Progress section
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(
-                AppConstants.paddingLarge,
-                AppConstants.paddingLarge,
-                AppConstants.paddingLarge,
-                AppConstants.paddingMedium,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Your Progress',
-                        style: Theme.of(context).textTheme.headlineSmall,
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Text(
-                            levelName,
-                            style: Theme.of(context).textTheme.bodyLarge
-                                ?.copyWith(
-                                  fontWeight: FontWeight.w700,
-                                  color: AppColors.primary,
-                                  fontSize: 18,
-                                ),
-                          ),
-                          Text(
-                            '$totalCompleted/$totalLessons lessons',
-                            style: Theme.of(
-                              context,
-                            ).textTheme.bodySmall?.copyWith(color: Colors.grey),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: AppConstants.paddingMedium),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(
-                      AppConstants.radiusSmall,
+      body: Column(
+        children: [
+          // Fixed progress section at the top
+          Padding(
+            padding: const EdgeInsets.fromLTRB(
+              AppConstants.paddingLarge,
+              AppConstants.paddingLarge,
+              AppConstants.paddingLarge,
+              AppConstants.paddingMedium,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Your Progress',
+                      style: Theme.of(context).textTheme.headlineSmall,
                     ),
-                    child: LinearProgressIndicator(
-                      value: totalCompleted / totalLessons,
-                      minHeight: 10,
-                      backgroundColor: Colors.grey.withOpacity(0.3),
-                      valueColor: const AlwaysStoppedAnimation<Color>(
-                        AppColors.primary,
-                      ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Text(
+                          levelName,
+                          style: Theme.of(context).textTheme.bodyLarge
+                              ?.copyWith(
+                                fontWeight: FontWeight.w700,
+                                color: AppColors.primary,
+                                fontSize: 18,
+                              ),
+                        ),
+                        Text(
+                          '$totalCompleted/$totalLessons lessons',
+                          style: Theme.of(
+                            context,
+                          ).textTheme.bodySmall?.copyWith(color: Colors.grey),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                const SizedBox(height: AppConstants.paddingMedium),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(
+                    AppConstants.radiusSmall,
+                  ),
+                  child: LinearProgressIndicator(
+                    value: totalCompleted / totalLessons,
+                    minHeight: 10,
+                    backgroundColor: Colors.grey.withOpacity(0.3),
+                    valueColor: const AlwaysStoppedAnimation<Color>(
+                      AppColors.primary,
                     ),
                   ),
-                  const SizedBox(height: AppConstants.paddingSmall),
-                  Text(
-                    '${progressPercent.toStringAsFixed(0)}% complete',
-                    style: Theme.of(context).textTheme.bodySmall,
+                ),
+                const SizedBox(height: AppConstants.paddingSmall),
+                Text(
+                  '${progressPercent.toStringAsFixed(0)}% complete',
+                  style: Theme.of(context).textTheme.bodySmall,
+                ),
+                const SizedBox(height: AppConstants.paddingSmall),
+                Divider(
+                  thickness: 1,
+                  color: Colors.grey.withOpacity(0.2),
+                  height: 1,
+                ),
+              ],
+            ),
+          ),
+          // Scrollable lessons list
+          Expanded(
+            child: CustomScrollView(
+              slivers: [
+                // Lesson categories
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: AppConstants.paddingLarge,
+                      vertical: AppConstants.paddingMedium,
+                    ),
+                    child: _buildCategorySection(
+                      context,
+                      category: LessonCategory.beginner,
+                      lessons: beginnerLessons,
+                      isLocked: false,
+                      currentLessonId: currentLessonId,
+                    ),
                   ),
-                  const SizedBox(height: AppConstants.paddingSmall),
-                  Divider(
-                    thickness: 1,
-                    color: Colors.grey.withOpacity(0.2),
-                    height: 1,
+                ),
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: AppConstants.paddingLarge,
+                      vertical: AppConstants.paddingMedium,
+                    ),
+                    child: _buildCategorySection(
+                      context,
+                      category: LessonCategory.intermediate,
+                      lessons: intermediateLessons,
+                      isLocked: totalCompleted < 5,
+                      requiredLessons: 5,
+                      currentLessonId: currentLessonId,
+                    ),
                   ),
-                ],
-              ),
-            ),
-          ),
+                ),
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: AppConstants.paddingLarge,
+                      vertical: AppConstants.paddingMedium,
+                    ),
+                    child: _buildCategorySection(
+                      context,
+                      category: LessonCategory.advanced,
+                      lessons: advancedLessons,
+                      isLocked: totalCompleted < 10,
+                      requiredLessons: 10,
+                      currentLessonId: currentLessonId,
+                    ),
+                  ),
+                ),
 
-          // Lesson categories
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: AppConstants.paddingLarge,
-                vertical: AppConstants.paddingMedium,
-              ),
-              child: _buildCategorySection(
-                context,
-                category: LessonCategory.beginner,
-                lessons: beginnerLessons,
-                isLocked: false,
-                currentLessonId: currentLessonId,
-              ),
+                // Bottom padding
+                SliverToBoxAdapter(
+                  child: SizedBox(height: AppConstants.paddingLarge),
+                ),
+              ],
             ),
-          ),
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: AppConstants.paddingLarge,
-                vertical: AppConstants.paddingMedium,
-              ),
-              child: _buildCategorySection(
-                context,
-                category: LessonCategory.intermediate,
-                lessons: intermediateLessons,
-                isLocked: totalCompleted < 5,
-                requiredLessons: 5,
-                currentLessonId: currentLessonId,
-              ),
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: AppConstants.paddingLarge,
-                vertical: AppConstants.paddingMedium,
-              ),
-              child: _buildCategorySection(
-                context,
-                category: LessonCategory.advanced,
-                lessons: advancedLessons,
-                isLocked: totalCompleted < 10,
-                requiredLessons: 10,
-                currentLessonId: currentLessonId,
-              ),
-            ),
-          ),
-
-          // Bottom padding
-          SliverToBoxAdapter(
-            child: SizedBox(height: AppConstants.paddingLarge),
           ),
         ],
       ),
@@ -256,14 +260,14 @@ class _LessonsScreenState extends State<LessonsScreen> {
                             ),
                       ),
                       if (isLocked)
-                               Text(
-                                 'Complete $requiredLessons lessons to unlock',
-                                 style: Theme.of(context).textTheme.bodySmall
-                                     ?.copyWith(
-                                       color: AppColors.warning,
-                                       fontWeight: FontWeight.w500,
-                                     ),
-                               ),
+                        Text(
+                          'Complete $requiredLessons lessons to unlock',
+                          style: Theme.of(context).textTheme.bodySmall
+                              ?.copyWith(
+                                color: AppColors.warning,
+                                fontWeight: FontWeight.w500,
+                              ),
+                        ),
                     ],
                   ),
                 ),
@@ -315,6 +319,6 @@ class _LessonsScreenState extends State<LessonsScreen> {
             ),
           ),
       ],
-      );
-      }
-      }
+    );
+  }
+}
