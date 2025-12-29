@@ -33,4 +33,14 @@ class Lesson {
         return 'Advanced';
     }
   }
+
+  String getDifficultyLabel() {
+    if (difficulty <= 2) {
+      return 'Easy';
+    } else if (difficulty == 3) {
+      return 'Medium';
+    } else {
+      return 'Hard';
+    }
+  }
 }

@@ -1,16 +1,98 @@
-# crypto_trading_lessons
+# Crypto Trading Lessons
 
-A new Flutter project.
+A Flutter educational app that teaches cryptocurrency trading fundamentals through interactive lessons, a virtual wallet, and a trading practice simulator.
+
+## Features
+
+### 📚 Lessons
+- 9 structured lessons (5 Beginner, 2 Intermediate, 2 Advanced)
+- Categorized by difficulty level
+- Progressive unlocking system based on prerequisites
+- Detailed lesson content with visual difficulty indicators
+- Progress tracking per lesson
+
+### 💰 Wallet
+- Virtual wallet with 1000+ USD starting balance
+- Multi-cryptocurrency support (USDT, BTC, ETH, XRP, SOL)
+- Real-time price display with 24h changes
+- Send/Receive transaction UI
+- Asset management interface
+
+### 🎮 Practice
+- Trading simulator with unlocking requirements
+- Gamified progression system
+- Unlocks after completing 5 beginner lessons
+- Interactive trading experience with mock market data
+
+### 👤 Profile
+- User level and experience (EXP) tracking
+- Achievement system with visual indicators
+- Progress visualization
+- Settings management
+- User preferences and security options
+
+## Tech Stack
+
+- **Framework:** Flutter 3.10+
+- **Architecture:** Clean Architecture + Feature-based
+- **Navigation:** GoRouter 14.6.0
+- **Theme:** Material Design 3 with Light/Dark support
+- **State Management:** BLoC (planned)
+- **Database:** Drift/SQLite (planned)
+
+## Project Structure
+
+See [docs/02_project_structure.md](docs/02_project_structure.md) for detailed structure.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+### Prerequisites
+- Flutter 3.10+
+- Dart 3.0+
 
-A few resources to get you started if this is your first Flutter project:
+### Installation
+```bash
+git clone https://github.com/teasec4/crypto-lessons-practice-app.git
+cd crypto_trading_lessons
+flutter pub get
+flutter run
+```
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Documentation
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- [Vision & Goals](docs/00_vision.md) - Project vision and objectives
+- [Architecture](docs/01_architecture.md) - System architecture overview
+- [Project Structure](docs/02_project_structure.md) - Detailed file structure
+- [Release Plan](docs/03_release_plan.md) - Roadmap and milestones
+- [Quick Start](docs/QUICK_START.md) - Development quick reference
+- [Routing Guide](docs/routing.md) - Navigation structure
+
+## Progress
+
+See [PROGRESS.md](PROGRESS.md) for detailed progress tracking and completed features.
+
+## Roadmap
+
+### Phase 1 (MVP) - ✅ Complete
+- Feature-based architecture
+- 4-tab navigation (Lessons, Wallet, Practice, Profile)
+- Lesson system with categories and locking
+- Virtual wallet with multi-asset support
+- Achievement system
+- Progress tracking
+
+### Phase 2 (In Progress)
+- [ ] BLoC state management
+- [ ] Drift SQLite database
+- [ ] User authentication
+- [ ] Real API integration
+
+### Phase 3 (Future)
+- [ ] WebSocket for real-time prices
+- [ ] Advanced trading simulator
+- [ ] Local notifications
+- [ ] Data persistence
+
+## License
+
+This project is open source and available under the MIT License.

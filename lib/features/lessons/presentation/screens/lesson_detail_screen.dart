@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:crypto_trading_lessons/core/constants/index.dart';
-import 'package:crypto_trading_lessons/features/lessons/domain/entities/lesson.dart';
+import 'package:crypto_trading_lessons/features/lessons/data/lesson_repository.dart';
 
 class LessonDetailScreen extends StatefulWidget {
   final int lessonId;
@@ -20,15 +20,8 @@ class _LessonDetailScreenState extends State<LessonDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // Mock lesson data - в реальном приложении будет загружаться по ID
-    final lesson = Lesson(
-      id: widget.lessonId,
-      title: 'Introduction to Trading',
-      description: 'Learn the basics of cryptocurrency trading and market analysis.',
-      duration: 15 + (widget.lessonId * 5),
-      difficulty: (widget.lessonId % 5) + 1,
-      isCompleted: widget.lessonId < 3,
-    );
+    // Получаем урок из репозитория
+    final lesson = LessonRepository.getLessonById(widget.lessonId);
 
     return Scaffold(
       appBar: AppBar(
@@ -70,20 +63,21 @@ class _LessonDetailScreenState extends State<LessonDetailScreen> {
                     const SizedBox(width: AppConstants.paddingMedium),
                     Container(
                       padding: const EdgeInsets.symmetric(
-                        horizontal: AppConstants.paddingSmall,
+                        horizontal: 12,
                         vertical: 4,
                       ),
                       decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.2),
+                        color: Colors.white.withOpacity(0.25),
                         borderRadius: BorderRadius.circular(
                           AppConstants.radiusSmall,
                         ),
                       ),
                       child: Text(
-                        '⭐ ${lesson.difficulty}',
+                        lesson.getDifficultyLabel(),
                         style: const TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.w600,
+                          fontSize: 12,
                         ),
                       ),
                     ),
