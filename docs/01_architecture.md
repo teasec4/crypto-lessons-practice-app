@@ -1,0 +1,4 @@
+- Clean Architecture
+- Flutter + BLoC
+- Drift (SQLite)
+- Feature-based structure

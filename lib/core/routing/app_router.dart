@@ -1,0 +1,45 @@
+import 'package:go_router/go_router.dart';
+import 'package:crypto_trading_lessons/features/lessons/presentation/screens/lessons_screen.dart';
+import 'package:crypto_trading_lessons/features/wallet/presentation/screens/wallet_screen.dart';
+import 'package:crypto_trading_lessons/features/profile/presentation/screens/profile_screen.dart';
+import 'package:crypto_trading_lessons/core/widgets/main_shell.dart';
+
+final class AppRouter {
+  static const String lessonsRoute = '/lessons';
+  static const String walletRoute = '/wallet';
+  static const String profileRoute = '/profile';
+
+  static final GoRouter router = GoRouter(
+    initialLocation: lessonsRoute,
+    routes: [
+      ShellRoute(
+        builder: (context, state, child) {
+          return MainShell(child: child);
+        },
+        routes: [
+          GoRoute(
+            path: lessonsRoute,
+            name: 'lessons',
+            pageBuilder: (context, state) => NoTransitionPage(
+              child: const LessonsScreen(),
+            ),
+          ),
+          GoRoute(
+            path: walletRoute,
+            name: 'wallet',
+            pageBuilder: (context, state) => NoTransitionPage(
+              child: const WalletScreen(),
+            ),
+          ),
+          GoRoute(
+            path: profileRoute,
+            name: 'profile',
+            pageBuilder: (context, state) => NoTransitionPage(
+              child: const ProfileScreen(),
+            ),
+          ),
+        ],
+      ),
+    ],
+  );
+}
