@@ -5,7 +5,7 @@ import 'package:crypto_trading_lessons/features/profile/domain/entities/achievem
 import 'package:crypto_trading_lessons/features/profile/presentation/widgets/profile_header.dart';
 import 'package:crypto_trading_lessons/features/profile/presentation/widgets/achievement_item.dart';
 import 'package:crypto_trading_lessons/features/profile/presentation/widgets/settings_section.dart';
-import 'package:crypto_trading_lessons/features/lessons/presentation/widgets/native_ad_card.dart';
+import 'package:crypto_trading_lessons/core/widgets/native_ad_card.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});

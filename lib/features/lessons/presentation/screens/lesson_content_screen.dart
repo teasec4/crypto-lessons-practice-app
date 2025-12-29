@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:crypto_trading_lessons/features/lessons/data/lesson_repository.dart';
 import 'package:crypto_trading_lessons/features/lessons/domain/entities/lesson_page.dart';
-import 'package:crypto_trading_lessons/features/lessons/presentation/widgets/native_ad_card.dart';
+import 'package:crypto_trading_lessons/core/widgets/native_ad_card.dart';
 import 'package:crypto_trading_lessons/core/constants/index.dart';
 
 class LessonContentScreen extends StatefulWidget {

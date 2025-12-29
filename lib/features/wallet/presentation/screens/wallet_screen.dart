@@ -5,7 +5,7 @@ import 'package:crypto_trading_lessons/features/wallet/domain/entities/crypto_as
 import 'package:crypto_trading_lessons/features/wallet/domain/entities/wallet.dart';
 import 'package:crypto_trading_lessons/features/wallet/presentation/widgets/balance_card.dart';
 import 'package:crypto_trading_lessons/features/wallet/presentation/widgets/asset_item.dart';
-import 'package:crypto_trading_lessons/features/lessons/presentation/widgets/native_ad_card.dart';
+import 'package:crypto_trading_lessons/core/widgets/native_ad_card.dart';
 
 class WalletScreen extends StatelessWidget {
   const WalletScreen({super.key});
