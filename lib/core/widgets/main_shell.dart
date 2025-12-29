@@ -40,6 +40,10 @@ class MainShell extends StatelessWidget {
               label: 'Wallet',
             ),
             BottomNavigationBarItem(
+              icon: Icon(Icons.trending_up),
+              label: 'Practice',
+            ),
+            BottomNavigationBarItem(
               icon: Icon(Icons.person),
               label: 'Profile',
             ),
@@ -56,8 +60,10 @@ class MainShell extends StatelessWidget {
         return 0;
       case AppRouter.walletRoute:
         return 1;
-      case AppRouter.profileRoute:
+      case AppRouter.practiceRoute:
         return 2;
+      case AppRouter.profileRoute:
+        return 3;
       default:
         return 0;
     }
@@ -72,6 +78,9 @@ class MainShell extends StatelessWidget {
         context.go(AppRouter.walletRoute);
         break;
       case 2:
+        context.go(AppRouter.practiceRoute);
+        break;
+      case 3:
         context.go(AppRouter.profileRoute);
         break;
     }

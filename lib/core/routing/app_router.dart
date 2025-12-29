@@ -2,6 +2,7 @@ import 'package:go_router/go_router.dart';
 import 'package:crypto_trading_lessons/features/lessons/presentation/screens/lessons_screen.dart';
 import 'package:crypto_trading_lessons/features/lessons/presentation/screens/lesson_detail_screen.dart';
 import 'package:crypto_trading_lessons/features/wallet/presentation/screens/wallet_screen.dart';
+import 'package:crypto_trading_lessons/features/practice/presentation/screens/practice_screen.dart';
 import 'package:crypto_trading_lessons/features/profile/presentation/screens/profile_screen.dart';
 import 'package:crypto_trading_lessons/core/widgets/main_shell.dart';
 
@@ -9,6 +10,7 @@ final class AppRouter {
   static const String lessonsRoute = '/lessons';
   static const String lessonDetailRoute = '/lessons/:id';
   static const String walletRoute = '/wallet';
+  static const String practiceRoute = '/practice';
   static const String profileRoute = '/profile';
 
   static final GoRouter router = GoRouter(
@@ -41,6 +43,13 @@ final class AppRouter {
             name: 'wallet',
             pageBuilder: (context, state) => NoTransitionPage(
               child: const WalletScreen(),
+            ),
+          ),
+          GoRoute(
+            path: practiceRoute,
+            name: 'practice',
+            pageBuilder: (context, state) => NoTransitionPage(
+              child: const PracticeScreen(),
             ),
           ),
           GoRoute(
